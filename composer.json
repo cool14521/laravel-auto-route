@@ -1,0 +1,13 @@
+{
+    "name": "web-expendables/laravel-auto-route",
+    "description": "Declare automatically route names for your project following conventions",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steven Yung",
+            "email": "stevenyung@icloud.com"
+        }
+    ],
+    "require": {}
+}
