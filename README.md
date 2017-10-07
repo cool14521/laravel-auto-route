@@ -1,1 +1,1 @@
-# laravel-route-namer
+# laravel-auto-route
