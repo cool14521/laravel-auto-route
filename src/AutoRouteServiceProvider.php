@@ -1,6 +1,6 @@
 <?php
 
-namespace Expendables\AutoRoute\Providers;
+namespace Expendables\AutoRoute;
 
 use Illuminate\Support\ServiceProvider;
 

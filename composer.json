@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Expendables\\AutoRoute\\Providers\\AutoRouteServiceProvider"
+                "Expendables\\AutoRoute\\AutoRouteServiceProvider"
             ]
         }
     }
