@@ -18,5 +18,12 @@
         "psr-4": {
             "Expendables\\AutoRoute\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Expendables\\AutoRoute\\Providers\\AutoRouteServiceProvider"
+            ]
+        }
     }
 }
