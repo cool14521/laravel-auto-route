@@ -15,11 +15,7 @@ class AutoRouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Router::macro('getUnnamedRoutes', function () {
-            return array_filter($this->getRoutes()->getRoutes(), function ($route) {
-                return ($route->getName() === null);
-            });
-        });
+        Router::mixin(new ImprovedRouter);
 
         Route::macro('getControllerName', function () {
             $controllerName = (new ReflectionClass($this->getController()))->getShortName();
@@ -27,17 +23,6 @@ class AutoRouteServiceProvider extends ServiceProvider
             preg_match('/(\w+)Controller/', $controllerName, $matches);
 
             return strtolower($matches[1]);
-        });
-
-        Router::macro('refreshDefaultNames', function () {
-            foreach ($this->getUnnamedRoutes() as $route)
-            {
-                $name = $route->getControllerName();
-
-                $method = $route->getActionMethod();
-
-                $route->name("{$name}.{$method}");
-            }
         });
 
         $this->app->booted(function () {
