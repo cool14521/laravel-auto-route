@@ -2,6 +2,8 @@
 
 namespace Expendables\AutoRoute\Tests;
 
+use Expendables\AutoRoute\Tests\Stubs\TestsController;
+
 class RouterTest extends TestCase
 {
     /** @test */
@@ -27,5 +29,17 @@ class RouterTest extends TestCase
         $results = $this->app['router']->getUnnamedRoutes();
 
         $this->assertEmpty($results);
+    }
+
+    /** @test */
+    public function can_refresh_defaults_names_for_unnamed_router()
+    {
+        $controller = TestsController::class;
+        $this->app['router']->get('/', "{$controller}@index");
+
+        $result = $this->app['router']->refreshDefaultNames();
+
+        $route = $this->app['router']->getRoutes()->getRoutes()[0];
+        $this->assertEquals('tests.index', $route->getName());
     }
 }
