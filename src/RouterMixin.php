@@ -2,7 +2,7 @@
 
 namespace Expendables\AutoRoute;
 
-class ImprovedRouter
+class RouterMixin
 {
     public function getUnnamedRoutes()
     {
