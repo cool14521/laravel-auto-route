@@ -20,4 +20,11 @@ class RouteMixin
             return (new ReflectionClass($this->getController()))->getShortName();
         };
     }
+
+    public function isSingleActionController()
+    {
+        return function () {
+            return (get_class($this->getController()) === $this->getActionMethod());
+        };
+    }
 }

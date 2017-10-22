@@ -10,4 +10,9 @@ class TestsController extends Controller
     {
         return true;
     }
+
+    public function __invoke()
+    {
+        return true;
+    }
 }
