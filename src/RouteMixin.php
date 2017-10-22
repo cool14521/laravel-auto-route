@@ -8,11 +8,16 @@ class RouteMixin
 {
     public function getControllerName() {
         return function () {
-            $controllerName = (new ReflectionClass($this->getController()))->getShortName();
-
-            preg_match('/(\w+)Controller/', $controllerName, $matches);
+            preg_match('/(\w+)Controller/', $this->getControllerShortName(), $matches);
 
             return strtolower($matches[1]);
+        };
+    }
+
+    public function getControllerShortName()
+    {
+        return function () {
+            return (new ReflectionClass($this->getController()))->getShortName();
         };
     }
 }

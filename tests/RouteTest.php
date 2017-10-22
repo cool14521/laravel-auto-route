@@ -17,4 +17,16 @@ class RouteTest extends TestCase
 
         $this->assertEquals('tests', $res);
     }
+
+    /** @test */
+    public function can_get_controller_short_name()
+    {
+        $controller = TestsController::class;
+        $this->router->get('/', "{$controller}@index");
+        $route = $this->router->getRoutes()->getRoutes()[0];
+
+        $result = $route->getControllerShortName();
+
+        $this->assertEquals('TestsController', $result);
+    }
 }
