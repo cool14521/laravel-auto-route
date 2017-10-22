@@ -9,9 +9,9 @@ class RouterTest extends TestCase
     /** @test */
     public function can_retrieve_unnamed_routes()
     {
-        $this->app['router']->get('/', 'Controller@unnamed');
+        $this->router->get('/', 'Controller@unnamed');
 
-        $results = $this->app['router']->getUnnamedRoutes();
+        $results = $this->router->getUnnamedRoutes();
 
         $this->assertEquals(1, count($results));
         foreach ($results as $result) {
@@ -22,11 +22,11 @@ class RouterTest extends TestCase
     /** @test */
     public function ignore_named_routes_when_retrieving_unnamed_routes()
     {
-        $this->app['router']
+        $this->router
             ->get('/', 'Controller@named')
             ->name('some.random.name');
 
-        $results = $this->app['router']->getUnnamedRoutes();
+        $results = $this->router->getUnnamedRoutes();
 
         $this->assertEmpty($results);
     }
@@ -35,11 +35,11 @@ class RouterTest extends TestCase
     public function can_refresh_defaults_names_for_unnamed_router()
     {
         $controller = TestsController::class;
-        $this->app['router']->get('/', "{$controller}@index");
+        $this->router->get('/', "{$controller}@index");
 
-        $result = $this->app['router']->refreshDefaultNames();
+        $result = $this->router->refreshDefaultNames();
 
-        $route = $this->app['router']->getRoutes()->getRoutes()[0];
+        $route = $this->router->getRoutes()->getRoutes()[0];
         $this->assertEquals('tests.index', $route->getName());
     }
 }

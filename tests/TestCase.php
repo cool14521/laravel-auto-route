@@ -11,4 +11,11 @@ class TestCase extends BaseTestCase
     {
         return [AutoRouteServiceProvider::class];
     }
+
+    public function __get($name)
+    {
+        if ($name === 'router') {
+            return $this->app['router'];
+        }
+    }
 }

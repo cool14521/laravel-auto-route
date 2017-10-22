@@ -10,7 +10,7 @@ class RouteTest extends TestCase
     public function can_get_controller_name()
     {
         $controller = TestsController::class;
-        $this->app['router']->get('/', "{$controller}@index");
+        $this->router->get('/', "{$controller}@index");
         $route = $this->app['router']->getRoutes()->getRoutes()[0];
 
         $res = $route->getControllerName();
