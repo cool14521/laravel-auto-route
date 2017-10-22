@@ -16,14 +16,7 @@ class AutoRouteServiceProvider extends ServiceProvider
     public function boot()
     {
         Router::mixin(new RouterMixin);
-
-        Route::macro('getControllerName', function () {
-            $controllerName = (new ReflectionClass($this->getController()))->getShortName();
-
-            preg_match('/(\w+)Controller/', $controllerName, $matches);
-
-            return strtolower($matches[1]);
-        });
+        Route::mixin(new RouteMixin);
 
         $this->app->booted(function () {
             $this->app['router']->refreshDefaultNames();
