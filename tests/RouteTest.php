@@ -24,12 +24,6 @@ class RouteTest extends TestCase
     }
 
     /** @test */
-    public function cannot_pass_controller_class_without_trailing_controller_word()
-    {
-        //
-    }
-
-    /** @test */
     public function can_get_controller_short_name()
     {
         $result = $this->route->getControllerShortName();

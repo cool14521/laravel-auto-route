@@ -20,9 +20,11 @@ class RouterMixin
             {
                 $name = $route->getControllerName();
 
-                $method = $route->getActionMethod();
+                if (! $route->isSingleActionController()) {
+                    $name .= '.' . $route->getActionMethod();
+                }
 
-                $route->name("{$name}.{$method}");
+                $route->name($name);
             }
         };
     }

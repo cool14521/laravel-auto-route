@@ -32,7 +32,7 @@ class RouterTest extends TestCase
     }
 
     /** @test */
-    public function can_refresh_defaults_names_for_unnamed_router()
+    public function can_refresh_defaults_names_for_unnamed_route()
     {
         $controller = TestsController::class;
         $this->router->get('/', "{$controller}@index");
@@ -41,6 +41,18 @@ class RouterTest extends TestCase
 
         $route = $this->router->getRoutes()->getRoutes()[0];
         $this->assertEquals('tests.index', $route->getName());
+    }
+
+    /** @test */
+    public function can_refresh_defaults_names_for_unnamed_route_using_single_action_controller()
+    {
+        $controller = TestsController::class;
+        $this->router->get('/', "{$controller}");
+
+        $result = $this->router->refreshDefaultNames();
+
+        $route = $this->router->getRoutes()->getRoutes()[0];
+        $this->assertEquals('tests', $route->getName());
     }
 
     /** @test */
