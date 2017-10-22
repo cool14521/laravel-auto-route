@@ -27,4 +27,11 @@ class RouteMixin
             return (get_class($this->getController()) === $this->getActionMethod());
         };
     }
+
+    public function isCallbackAction()
+    {
+        return function () {
+            return (! $this->isControllerAction());
+        };
+    }
 }

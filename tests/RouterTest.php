@@ -44,7 +44,7 @@ class RouterTest extends TestCase
     }
 
     /** @test */
-    public function can_refresh_defaults_names_for_unnamed_route_using_single_action_controller()
+    public function can_refresh_default_names_for_unnamed_route_using_single_action_controller()
     {
         $controller = TestsController::class;
         $this->router->get('/', "{$controller}");
@@ -56,26 +56,16 @@ class RouterTest extends TestCase
     }
 
     /** @test */
-    public function can_detect_if_route_is_a_single_action_controller()
+    public function ignore_callback_route_for_being_named()
     {
-        $controller = TestsController::class;
-        $this->router->get('/', $controller);
+        $this->router->get('/', function () {
+            return true;
+        });
+
+        $result = $this->router->refreshDefaultNames();
+
         $route = $this->router->getRoutes()->getRoutes()[0];
-
-        $result = $route->isSingleActionController();
-
-        $this->assertTrue($result);
+        $this->assertNull($route->getName());
     }
 
-    /** @test */
-    public function can_detected_if_route_is_not_single_action_controller()
-    {
-        $controller = TestsController::class;
-        $this->router->get('/', "{$controller}@index");
-        $route = $this->router->getRoutes()->getRoutes()[0];
-
-        $result = $route->isSingleActionController();
-
-        $this->assertFalse($result);
-    }
 }

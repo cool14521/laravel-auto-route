@@ -18,6 +18,10 @@ class RouterMixin
         return function () {
             foreach ($this->getUnnamedRoutes() as $route)
             {
+                if ($route->isCallbackAction()) {
+                    return;
+                }
+
                 $name = $route->getControllerName();
 
                 if (! $route->isSingleActionController()) {
