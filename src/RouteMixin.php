@@ -8,9 +8,9 @@ class RouteMixin
 {
     public function getControllerName() {
         return function () {
-            preg_match('/(\w+)Controller/', $this->getControllerShortName(), $matches);
-
-            return strtolower($matches[1]);
+            return NamingStrategy::getControllerName(
+                $this->getControllerShortName()
+            );
         };
     }
 
