@@ -35,5 +35,9 @@
                 "Expendables\\AutoRoute\\AutoRouteServiceProvider"
             ]
         }
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit --colors=always --filter ",
+        "tests": "./vendor/bin/phpunit --colors=always"
     }
 }
