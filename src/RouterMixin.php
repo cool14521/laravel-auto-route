@@ -22,11 +22,13 @@ class RouterMixin
                     continue;
                 }
 
-                $name = $route->getControllerName();
+                $action = $route->isSingleActionController()
+                    ? ''
+                    : $route->getActionMethod();
 
-                if (! $route->isSingleActionController()) {
-                    $name .= '.' . $route->getActionMethod();
-                }
+                $name = NamingStrategy::classic(
+                    $route->getControllerName(), $action
+                );
 
                 $route->name($name);
             }
