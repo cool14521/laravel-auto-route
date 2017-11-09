@@ -9,7 +9,7 @@ class RouterTest extends TestCase
     /** @test */
     public function can_retrieve_anonymous_routes()
     {
-        $this->router->get('/', 'Controller@unnamed');
+        $this->router->get('/', 'Controller@anonymous');
 
         $results = $this->router->getAnonymousRoutes();
 
@@ -39,8 +39,7 @@ class RouterTest extends TestCase
 
         $result = $this->router->generateDefaults();
 
-        $route = $this->router->getRoutes()->getRoutes()[0];
-        $this->assertEquals('tests.index', $route->getName());
+        $this->assertEquals('tests.index', $this->firstRouteName());
     }
 
     /** @test */
@@ -51,8 +50,7 @@ class RouterTest extends TestCase
 
         $result = $this->router->generateDefaults();
 
-        $route = $this->router->getRoutes()->getRoutes()[0];
-        $this->assertEquals('tests', $route->getName());
+        $this->assertEquals('tests', $this->firstRouteName());
     }
 
     /** @test */
@@ -68,8 +66,7 @@ class RouterTest extends TestCase
 
         $route = $this->router->getRoutes()->getRoutes()[1];
         $this->assertEquals('tests.index', $route->getName());
-        $route = $this->router->getRoutes()->getRoutes()[0];
-        $this->assertNull($route->getName());
+        $this->assertNull($this->firstRouteName());
     }
 
     /** @test */
