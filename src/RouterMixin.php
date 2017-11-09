@@ -32,6 +32,8 @@ class RouterMixin
 
                 $route->name($name);
             }
+
+            return $this;
         };
     }
 }
