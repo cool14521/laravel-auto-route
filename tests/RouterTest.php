@@ -7,7 +7,7 @@ use Expendables\AutoRoute\Tests\Stubs\TestsController;
 class RouterTest extends TestCase
 {
     /** @test */
-    public function can_retrieve_unnamed_routes()
+    public function can_retrieve_anonymous_routes()
     {
         $this->router->get('/', 'Controller@unnamed');
 
@@ -20,7 +20,7 @@ class RouterTest extends TestCase
     }
 
     /** @test */
-    public function ignore_named_routes_when_retrieving_unnamed_routes()
+    public function ignore_named_routes_when_retrieving_anonymous_routes()
     {
         $this->router
             ->get('/', 'Controller@named')
@@ -32,7 +32,7 @@ class RouterTest extends TestCase
     }
 
     /** @test */
-    public function can_refresh_defaults_names_for_unnamed_route()
+    public function can_generate_defaults_for_anonymous_routes()
     {
         $controller = TestsController::class;
         $this->router->get('/', "{$controller}@index");
@@ -44,7 +44,7 @@ class RouterTest extends TestCase
     }
 
     /** @test */
-    public function can_refresh_default_names_for_unnamed_route_using_single_action_controller()
+    public function can_generate_routes_for_anonymous_route_using_single_action_controller()
     {
         $controller = TestsController::class;
         $this->router->get('/', "{$controller}");
