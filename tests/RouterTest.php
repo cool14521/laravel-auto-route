@@ -11,7 +11,7 @@ class RouterTest extends TestCase
     {
         $this->router->get('/', 'Controller@unnamed');
 
-        $results = $this->router->getUnnamedRoutes();
+        $results = $this->router->getAnonymousRoutes();
 
         $this->assertEquals(1, count($results));
         foreach ($results as $result) {
@@ -26,7 +26,7 @@ class RouterTest extends TestCase
             ->get('/', 'Controller@named')
             ->name('some.random.name');
 
-        $results = $this->router->getUnnamedRoutes();
+        $results = $this->router->getAnonymousRoutes();
 
         $this->assertEmpty($results);
     }
@@ -37,7 +37,7 @@ class RouterTest extends TestCase
         $controller = TestsController::class;
         $this->router->get('/', "{$controller}@index");
 
-        $result = $this->router->refreshDefaultNames();
+        $result = $this->router->generateDefaults();
 
         $route = $this->router->getRoutes()->getRoutes()[0];
         $this->assertEquals('tests.index', $route->getName());
@@ -49,7 +49,7 @@ class RouterTest extends TestCase
         $controller = TestsController::class;
         $this->router->get('/', "{$controller}");
 
-        $result = $this->router->refreshDefaultNames();
+        $result = $this->router->generateDefaults();
 
         $route = $this->router->getRoutes()->getRoutes()[0];
         $this->assertEquals('tests', $route->getName());
@@ -64,7 +64,7 @@ class RouterTest extends TestCase
         $controller = TestsController::class;
         $this->router->get('/valid', "{$controller}@index");
 
-        $result = $this->router->refreshDefaultNames();
+        $result = $this->router->generateDefaults();
 
         $route = $this->router->getRoutes()->getRoutes()[1];
         $this->assertEquals('tests.index', $route->getName());

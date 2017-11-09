@@ -4,7 +4,7 @@ namespace Expendables\AutoRoute;
 
 class RouterMixin
 {
-    public function getUnnamedRoutes()
+    public function getAnonymousRoutes()
     {
         return function () {
             return array_filter($this->getRoutes()->getRoutes(), function ($route) {
@@ -13,10 +13,10 @@ class RouterMixin
         };
     }
 
-    public function refreshDefaultNames()
+    public function generateDefaults()
     {
         return function () {
-            foreach ($this->getUnnamedRoutes() as $route)
+            foreach ($this->getAnonymousRoutes() as $route)
             {
                 if ($route->isCallbackAction()) {
                     continue;

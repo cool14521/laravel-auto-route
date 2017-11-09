@@ -19,7 +19,7 @@ class AutoRouteServiceProvider extends ServiceProvider
         Route::mixin(new RouteMixin);
 
         $this->app->booted(function () {
-            $this->app['router']->refreshDefaultNames();
+            $this->app['router']->generateDefaults();
         });
     }
 
