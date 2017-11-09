@@ -22,9 +22,9 @@ class RouterMixin
                     continue;
                 }
 
-                $action = $route->isSingleActionController()
-                    ? ''
-                    : $route->getActionMethod();
+                $action = $route->isNotSingleActionController()
+                    ? $route->getActionMethod()
+                    : '';
 
                 $name = NamingStrategy::classic(
                     $route->getControllerName(), $action

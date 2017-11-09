@@ -44,6 +44,18 @@ class RouteTest extends TestCase
     }
 
     /** @test */
+    public function can_detect_if_route_is_not_a_single_action_controller()
+    {
+        $controller = TestsController::class;
+        $this->router->get('/', "{$controller}@index");
+        $route = $this->router->getRoutes()->getRoutes()[0];
+
+        $result = $route->isNotSingleActionController();
+
+        $this->assertTrue($result);
+    }
+
+    /** @test */
     public function can_detected_if_route_is_not_single_action_controller()
     {
         $controller = TestsController::class;

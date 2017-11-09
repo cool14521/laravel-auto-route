@@ -28,6 +28,13 @@ class RouteMixin
         };
     }
 
+    public function isNotSingleActionController()
+    {
+        return function () {
+            return (! $this->isSingleActionController());
+        };
+    }
+
     public function isCallbackAction()
     {
         return function () {
