@@ -10,7 +10,7 @@ class NamingStrategy
     }
 
     public static function getControllerName($controllerName) {
-        preg_match('/(\w+)Controller/', $controllerName, $matches);
+        preg_match('/(\w+)(Controller)?/', $controllerName, $matches);
 
         return strtolower($matches[1]);
     }

@@ -13,4 +13,28 @@ class NamingStrategyTest extends TestCase
 
         $this->assertEquals('tests.index', $result);
     }
+
+    /** @test */
+    public function can_extract_controller_name_without_trailing_controller_keyword()
+    {
+        $result = NamingStrategy::getControllerName('TestsController');
+
+        $this->assertEquals('tests', $result);
+    }
+
+    /** @test */
+    public function should_work_if_no_trailing_controller_in_controller_name()
+    {
+        $result = NamingStrategy::getControllerName('Tests');
+
+        $this->assertEquals('tests', $result);
+    }
+
+    /** @test */
+    public function all_name_generated_are_in_lowercase()
+    {
+        $result = NamingStrategy::getControllerName('TeSTs');
+
+        $this->assertEquals('tests', $result);
+    }
 }
