@@ -19,7 +19,7 @@ class RouterMixin
             foreach ($this->getUnnamedRoutes() as $route)
             {
                 if ($route->isCallbackAction()) {
-                    return;
+                    continue;
                 }
 
                 $name = $route->getControllerName();

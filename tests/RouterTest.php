@@ -58,12 +58,16 @@ class RouterTest extends TestCase
     /** @test */
     public function ignore_callback_route_for_being_named()
     {
-        $this->router->get('/', function () {
+        $this->router->get('/to-ignore', function () {
             return true;
         });
+        $controller = TestsController::class;
+        $this->router->get('/valid', "{$controller}@index");
 
         $result = $this->router->refreshDefaultNames();
 
+        $route = $this->router->getRoutes()->getRoutes()[1];
+        $this->assertEquals('tests.index', $route->getName());
         $route = $this->router->getRoutes()->getRoutes()[0];
         $this->assertNull($route->getName());
     }
