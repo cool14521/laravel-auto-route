@@ -72,4 +72,26 @@ class RouterTest extends TestCase
         $this->assertNull($route->getName());
     }
 
+    /** @test */
+    public function doesnt_override_manually_affected_routes()
+    {
+        $controller = TestsController::class;
+        $this->router
+            ->get('/has-name', "{$controller}@index")
+            ->name('something');
+
+        $result = $this->router->generateDefaults();
+
+        $this->assertEquals('something', $this->firstRouteName());
+    }
+
+    private function firstRoute()
+    {
+        return $this->router->getRoutes()->getRoutes()[0];
+    }
+
+    private function firstRouteName()
+    {
+        return $this->firstRoute()->getName();
+    }
 }
